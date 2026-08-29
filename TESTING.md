@@ -44,11 +44,14 @@
 - [ ] An oversized payload from a modified client is rejected server-side.
 - [ ] Control-character Global messages are rejected.
 
-## Pending online validation
+## Hosted two-player validation — 2026-08-29
 
-- [ ] Two distant players connect simultaneously.
-- [ ] VICINITY from player A does not reach distant player B.
-- [ ] GLOBAL from player A reaches distant player B.
-- [ ] Both players receive exactly one Global copy.
-- [ ] Cooldown for player A does not affect player B.
-- [ ] Both player names are displayed correctly.
+- [x] Two distant players connected simultaneously.
+- [x] Players were positioned in the north and south of Chernarus.
+- [x] VICINITY from player A did not reach distant player B.
+- [x] GLOBAL from player A reached distant player B.
+- [x] GLOBAL worked in both directions.
+- [x] Both players received exactly one Global copy.
+- [x] Cooldown for player A did not affect player B.
+- [x] Both player names were displayed correctly.
+- [x] Workshop client package matched the hosted server package.

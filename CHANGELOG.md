@@ -16,4 +16,6 @@
 - Preserved ZenModCore Up Arrow chat history.
 - Completed local client-to-server-to-client Global Chat validation.
 - Completed local Vicinity, reconnect, remapping and cooldown tests.
-- Left two-player distant-client validation pending for online testing.
+- Completed hosted two-player validation between the north and south of Chernarus.
+- Confirmed bidirectional Global Chat, correct player names and one copy per recipient.
+- Confirmed that per-player cooldowns remain independent.

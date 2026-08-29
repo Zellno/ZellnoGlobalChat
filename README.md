@@ -4,7 +4,7 @@ Independent open source DayZ mod that adds server-wide Global Chat while preserv
 
 ## Status
 
-Version 0.1.0-alpha. Local and single-client multiplayer validation is complete; online two-player validation remains pending.
+Version 0.1.0-alpha. Local and hosted two-player multiplayer validation is complete. Global Chat was validated between players positioned in the north and south of Chernarus.
 
 ## Usage
 
@@ -34,3 +34,7 @@ Vanilla DayZ only. CF and Dabs Framework are not required.
 ## License
 
 MIT. See LICENSE.
+
+## Steam Workshop
+
+https://steamcommunity.com/sharedfiles/filedetails/?id=3792361356

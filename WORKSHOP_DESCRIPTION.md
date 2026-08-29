@@ -60,7 +60,8 @@ Version 0.1.0-alpha.
 
 Local client-to-server-to-client Global Chat validation has passed.
 Vicinity, reconnect reset, input remapping, cooldown and logging tests have passed.
-Two-player distant-client validation remains pending for online testing.
+Hosted two-player validation has passed between players positioned in the north and south of Chernarus.
+Bidirectional delivery, correct player names, independent cooldowns and one copy per recipient were confirmed.
 
 [h2]Source code[/h2]
 
