@@ -1,5 +1,10 @@
 name = "Zellno Global Chat";
+picture = "";
+logoSmall = "";
+logo = "";
+logoOver = "";
+tooltip = "Zellno Global Chat";
+overview = "Secure server-wide Global Chat while preserving vanilla Vicinity Chat.";
+action = "https://github.com/Zellno/ZellnoGlobalChat";
 author = "Zellno";
-version = "0.1.0-dev";
-overview = "Adds secure server-wide Global Chat while preserving vanilla Vicinity Chat.";
-action = "";
+version = "0.1.0-alpha";

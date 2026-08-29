@@ -35,6 +35,7 @@ for required in \
     "$PROJECT_DIR/meta.cpp" \
     "$PROJECT_DIR/README.md" \
     "$PROJECT_DIR/TESTING.md" \
+    "$PROJECT_DIR/CHANGELOG.md" \
     "$PROJECT_DIR/LICENSE" \
     "$FILEBANK" \
     "$BANKREV" \
@@ -75,6 +76,7 @@ cp "$PROJECT_DIR/mod.cpp" "$BUILD_MOD/mod.cpp"
 cp "$PROJECT_DIR/meta.cpp" "$BUILD_MOD/meta.cpp"
 cp "$PROJECT_DIR/README.md" "$BUILD_MOD/README.md"
 cp "$PROJECT_DIR/TESTING.md" "$BUILD_MOD/TESTING.md"
+cp "$PROJECT_DIR/CHANGELOG.md" "$BUILD_MOD/CHANGELOG.md"
 cp "$PROJECT_DIR/LICENSE" "$BUILD_MOD/LICENSE"
 VERIFY_OUTPUT="$(
     wine "$DSCHECK" \

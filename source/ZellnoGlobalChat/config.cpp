@@ -20,7 +20,7 @@ class CfgMods
         dir = "ZellnoGlobalChat";
         name = "Zellno Global Chat";
         author = "Zellno";
-        version = "0.1.0-dev";
+        version = "0.1.0-alpha";
         type = "mod";
 
         inputs = "ZellnoGlobalChat\inputs.xml";

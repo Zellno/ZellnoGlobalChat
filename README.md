@@ -4,7 +4,7 @@ Independent open source DayZ mod that adds server-wide Global Chat while preserv
 
 ## Status
 
-Version 0.1.0-dev. Local development; not published to Steam Workshop.
+Version 0.1.0-alpha. Local and single-client multiplayer validation is complete; online two-player validation remains pending.
 
 ## Usage
 
