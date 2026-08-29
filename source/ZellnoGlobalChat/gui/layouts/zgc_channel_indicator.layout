@@ -1,0 +1,19 @@
+TextWidgetClass ZGCChannelIndicator {
+ visible 1
+ color 1 1 1 1
+ position 0 112
+ size 220 24
+ halign center_ref
+ valign bottom_ref
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ priority 2
+ style Default
+ text "VICINITY [NUM4]"
+ font "gui/fonts/sdf_MetronBook24"
+ "exact text" 1
+ "text halign" center
+ "text valign" center
+}

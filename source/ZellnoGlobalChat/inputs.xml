@@ -1,0 +1,16 @@
+<modded_inputs>
+    <inputs>
+        <actions>
+            <input
+                name="UAZellnoGlobalChatToggle"
+                loc="Toggle Zellno Global Chat channel"
+            />
+        </actions>
+    </inputs>
+
+    <preset>
+        <input name="UAZellnoGlobalChatToggle">
+            <btn name="kNumpad4" />
+        </input>
+    </preset>
+</modded_inputs>
