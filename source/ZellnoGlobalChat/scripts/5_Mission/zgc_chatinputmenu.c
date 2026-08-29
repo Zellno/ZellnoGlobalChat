@@ -8,16 +8,37 @@ modded class ChatInputMenu
 
         if (layoutRoot)
         {
-            m_ZGC_ChannelIndicator = TextWidget.Cast(
-                GetGame().GetWorkspace().CreateWidgets(
-                    ZGC_Constants.INDICATOR_LAYOUT,
-                    layoutRoot
-                )
-            );
+            m_ZGC_ChannelIndicator = TextWidget.Cast(GetGame().GetWorkspace().CreateWidgets(ZGC_Constants.INDICATOR_LAYOUT, layoutRoot));
         }
 
         ZGC_RefreshIndicator();
         return root;
+    }
+
+    override void Update(float timeslice)
+    {
+        super.Update(timeslice);
+
+        UAInput toggleInput = GetUApi().GetInputByName(ZGC_Constants.INPUT_TOGGLE);
+        if (!toggleInput || !toggleInput.LocalPress())
+        {
+            return;
+        }
+
+        if (m_edit_box)
+        {
+            string currentText = m_edit_box.GetText();
+            int currentLength = currentText.Length();
+
+            if (currentLength > 0 && currentText.Substring(currentLength - 1, 1) == "4")
+            {
+                m_edit_box.SetText(currentText.Substring(0, currentLength - 1));
+                m_edit_box.Update();
+            }
+        }
+
+        ZGC_ClientState.ToggleChannel();
+        ZGC_RefreshIndicator();
     }
 
     override void OnShow()
@@ -30,38 +51,6 @@ modded class ChatInputMenu
     {
         super.Refresh();
         ZGC_RefreshIndicator();
-    }
-
-    override bool OnKeyDown(Widget w, int x, int y, int key)
-    {
-        if (key == KeyCode.KC_NUMPAD4)
-        {
-            ZGC_ClientState.ToggleChannel();
-            ZGC_RefreshIndicator();
-            return true;
-        }
-
-        return super.OnKeyDown(w, x, y, key);
-    }
-
-    override bool OnKeyPress(Widget w, int x, int y, int key)
-    {
-        if (key == KeyCode.KC_NUMPAD4)
-        {
-            return true;
-        }
-
-        return super.OnKeyPress(w, x, y, key);
-    }
-
-    override bool OnKeyUp(Widget w, int x, int y, int key)
-    {
-        if (key == KeyCode.KC_NUMPAD4)
-        {
-            return true;
-        }
-
-        return super.OnKeyUp(w, x, y, key);
     }
 
     override bool OnChange(Widget w, int x, int y, bool finished)
@@ -132,11 +121,6 @@ modded class ChatInputMenu
 
         Param1<string> payload = new Param1<string>(text);
 
-        GetGame().RPCSingleParam(
-            player,
-            ZGC_Constants.RPC_SEND_GLOBAL,
-            payload,
-            true
-        );
+        GetGame().RPCSingleParam(player, ZGC_Constants.RPC_SEND_GLOBAL, payload, true);
     }
 }

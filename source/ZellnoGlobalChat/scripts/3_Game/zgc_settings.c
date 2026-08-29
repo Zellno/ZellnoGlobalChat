@@ -40,11 +40,7 @@ class ZGC_SettingsManager
         }
 
         string errorMessage;
-        if (!JsonFileLoader<ZGC_Settings>.LoadFile(
-            ZGC_Constants.SETTINGS_FILE,
-            s_Settings,
-            errorMessage
-        ))
+        if (!JsonFileLoader<ZGC_Settings>.LoadFile(ZGC_Constants.SETTINGS_FILE, s_Settings, errorMessage))
         {
             Print(ZGC_Constants.LOG_PREFIX + " Failed to load settings; defaults are active. Error: " + errorMessage);
             s_Settings = new ZGC_Settings();
@@ -61,15 +57,7 @@ class ZGC_SettingsManager
         s_Settings.Validate();
         Save();
 
-        Print(
-            ZGC_Constants.LOG_PREFIX
-            + " Settings loaded: enabled="
-            + s_Settings.Enabled.ToString()
-            + " maxLength="
-            + s_Settings.MaxMessageLength.ToString()
-            + " cooldownMs="
-            + s_Settings.CooldownMilliseconds.ToString()
-        );
+        Print(ZGC_Constants.LOG_PREFIX + " Settings loaded: enabled=" + s_Settings.Enabled.ToString() + " maxLength=" + s_Settings.MaxMessageLength.ToString() + " cooldownMs=" + s_Settings.CooldownMilliseconds.ToString());
     }
 
     protected static void Save()
@@ -82,11 +70,7 @@ class ZGC_SettingsManager
         s_Settings.Validate();
 
         string errorMessage;
-        if (!JsonFileLoader<ZGC_Settings>.SaveFile(
-            ZGC_Constants.SETTINGS_FILE,
-            s_Settings,
-            errorMessage
-        ))
+        if (!JsonFileLoader<ZGC_Settings>.SaveFile(ZGC_Constants.SETTINGS_FILE, s_Settings, errorMessage))
         {
             Print(ZGC_Constants.LOG_PREFIX + " Failed to save settings. Error: " + errorMessage);
         }

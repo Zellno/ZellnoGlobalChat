@@ -87,11 +87,7 @@ modded class MissionServer
             return;
         }
 
-        if (
-            message.IndexOf("\r") != -1
-            || message.IndexOf("\n") != -1
-            || message.IndexOf("\t") != -1
-        )
+        if (message.IndexOf("\r") != -1 || message.IndexOf("\n") != -1 || message.IndexOf("\t") != -1)
         {
             ZGC_LogRejected(sender, "control characters");
             return;
@@ -110,10 +106,7 @@ modded class MissionServer
         {
             int elapsed = now - lastAccepted;
 
-            if (
-                elapsed >= 0
-                && elapsed < settings.CooldownMilliseconds
-            )
+            if (elapsed >= 0 && elapsed < settings.CooldownMilliseconds)
             {
                 ZGC_LogRejected(sender, "cooldown");
                 return;
@@ -127,13 +120,7 @@ modded class MissionServer
 
         if (settings.LogAcceptedMessages)
         {
-            Print(
-                ZGC_Constants.LOG_PREFIX
-                + " accepted"
-                + " id=" + senderId
-                + " name=" + senderName
-                + " message=" + message
-            );
+            Print(ZGC_Constants.LOG_PREFIX + " accepted" + " id=" + senderId + " name=" + senderName + " message=" + message);
         }
     }
 
@@ -142,10 +129,7 @@ modded class MissionServer
         array<Man> players = new array<Man>;
         GetGame().GetPlayers(players);
 
-        Param2<string, string> outgoing = new Param2<string, string>(
-            senderName,
-            message
-        );
+        Param2<string, string> outgoing = new Param2<string, string>(senderName, message);
 
         for (int i = 0; i < players.Count(); i++)
         {
@@ -161,13 +145,7 @@ modded class MissionServer
                 continue;
             }
 
-            GetGame().RPCSingleParam(
-                player,
-                ZGC_Constants.RPC_RECEIVE_GLOBAL,
-                outgoing,
-                true,
-                recipient
-            );
+            GetGame().RPCSingleParam(player, ZGC_Constants.RPC_RECEIVE_GLOBAL, outgoing, true, recipient);
         }
     }
 
@@ -191,12 +169,6 @@ modded class MissionServer
             identityName = identity.GetName();
         }
 
-        Print(
-            ZGC_Constants.LOG_PREFIX
-            + " rejected"
-            + " id=" + identityId
-            + " name=" + identityName
-            + " reason=" + reason
-        );
+        Print(ZGC_Constants.LOG_PREFIX + " rejected" + " id=" + identityId + " name=" + identityName + " reason=" + reason);
     }
 }

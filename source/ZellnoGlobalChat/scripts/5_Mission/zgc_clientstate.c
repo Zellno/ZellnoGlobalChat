@@ -54,12 +54,7 @@ class ZGC_ClientState
             shownSender = "[GLOBAL] " + senderName;
         }
 
-        ChatMessageEventParams chatParams = new ChatMessageEventParams(
-            CCDirect,
-            shownSender,
-            message,
-            ""
-        );
+        ChatMessageEventParams chatParams = new ChatMessageEventParams(CCDirect, shownSender, message, "");
 
         mission.m_Chat.Add(chatParams);
     }
