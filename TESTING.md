@@ -1,38 +1,51 @@
 # Zellno Global Chat testing
 
-## Build
+## Local validation — 2026-08-29
 
-- PBO builds with prefix ZellnoGlobalChat.
-- Zellno signature validates.
-- Build performs no installation.
+### Build and startup
 
-## Startup
+- [x] PBO builds with prefix ZellnoGlobalChat.
+- [x] Zellno signature validates.
+- [x] Build performs no installation.
+- [x] Dedicated server has no ZGC script compile errors.
+- [x] Client has no ZGC script compile errors.
+- [x] Server creates profiles/ZellnoGlobalChat/settings.json.
+- [x] Server initializes the native RPC handler.
 
-- Dedicated server has no script compile errors.
-- Client has no script compile errors.
-- Server creates profiles/ZellnoGlobalChat/settings.json.
+### Interface
 
-## Interface
+- [x] Enter opens chat normally.
+- [x] Initial channel is VICINITY.
+- [x] Numpad 4 alternates VICINITY and GLOBAL.
+- [x] Numpad 4 does not remain in the input when bound to the toggle action.
+- [x] The toggle action respects control remapping.
+- [x] Indicator does not cover the input field.
+- [x] Reconnect resets the channel to VICINITY.
 
-- Enter opens chat normally.
-- Initial channel is VICINITY.
-- Numpad 4 alternates VICINITY and GLOBAL.
-- Numpad 4 does not insert the character 4.
-- Indicator does not cover the input field.
-- Reconnect resets the channel to VICINITY.
+### Local multiplayer flow
 
-## Multiplayer
+- [x] VICINITY delegates to the vanilla chat flow.
+- [x] GLOBAL travels from client to server and back to the sender.
+- [x] Sender receives one server-relayed copy.
+- [x] Global messages are not duplicated.
+- [x] Server obtains the displayed player name from PlayerIdentity.
+- [x] Cooldown rejects a rapid Global request server-side.
+- [x] Accepted and rejected requests appear in server logs.
 
-- VICINITY remains limited by proximity.
-- GLOBAL reaches distant players.
-- Sender receives one server-relayed copy.
-- Messages are not duplicated.
+### Pending local validation
 
-## Compatibility and security
+- [ ] ZenModCore ! commands still work.
+- [ ] VPPAdminTools / commands still work.
+- [ ] Up Arrow chat history still works.
+- [ ] Empty Global messages are rejected.
+- [ ] Oversized Global messages are rejected.
+- [ ] Control-character Global messages are rejected.
 
-- ZenModCore ! commands still work.
-- VPPAdminTools / commands still work.
-- Up Arrow chat history still works.
-- Empty, oversized and control-character messages are rejected.
-- Cooldown rejects rapid Global messages.
-- Accepted and rejected requests appear in server logs.
+## Pending online validation
+
+- [ ] Two distant players connect simultaneously.
+- [ ] VICINITY from player A does not reach distant player B.
+- [ ] GLOBAL from player A reaches distant player B.
+- [ ] Both players receive exactly one Global copy.
+- [ ] Cooldown for player A does not affect player B.
+- [ ] Both player names are displayed correctly.

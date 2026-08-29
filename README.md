@@ -9,8 +9,9 @@ Version 0.1.0-dev. Local development; not published to Steam Workshop.
 ## Usage
 
 - Enter opens the vanilla chat input.
-- Vicinity is selected by default.
+- Vicinity is selected by default. Vicinity means nearby players only.
 - Numpad 4 alternates VICINITY and GLOBAL while chat is open.
+- Numpad 4 is the default binding and can be remapped in the DayZ controls.
 - Enter sends through the selected channel.
 
 ## Security
