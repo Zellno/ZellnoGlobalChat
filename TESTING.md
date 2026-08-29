@@ -38,8 +38,10 @@
 - [ ] ZenModCore admin command execution with EnableCommands enabled.
 - [x] VPPAdminTools / commands are consumed and do not enter Global Chat.
 - [x] ZenModCore Up Arrow chat history still works.
-- [ ] Empty Global messages are rejected.
-- [ ] Oversized Global messages are rejected.
+- [x] Empty vanilla chat input does not reach the Global RPC.
+- [ ] An empty payload from a modified client is rejected server-side.
+- [x] Vanilla chat input truncates oversized pasted Global text before the RPC (35 characters observed locally).
+- [ ] An oversized payload from a modified client is rejected server-side.
 - [ ] Control-character Global messages are rejected.
 
 ## Pending online validation
