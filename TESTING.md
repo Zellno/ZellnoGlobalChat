@@ -34,9 +34,10 @@
 
 ### Pending local validation
 
-- [ ] ZenModCore ! commands still work.
-- [ ] VPPAdminTools / commands still work.
-- [ ] Up Arrow chat history still works.
+- [x] Messages beginning with ! bypass Global Chat and return to the existing chat chain.
+- [ ] ZenModCore admin command execution with EnableCommands enabled.
+- [x] VPPAdminTools / commands are consumed and do not enter Global Chat.
+- [x] ZenModCore Up Arrow chat history still works.
 - [ ] Empty Global messages are rejected.
 - [ ] Oversized Global messages are rejected.
 - [ ] Control-character Global messages are rejected.
