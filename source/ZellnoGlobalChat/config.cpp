@@ -20,7 +20,7 @@ class CfgMods
         dir = "ZellnoGlobalChat";
         name = "Zellno Global Chat";
         author = "Zellno";
-        version = "0.1.0-alpha";
+        version = "0.2.0-alpha";
         type = "mod";
 
         inputs = "ZellnoGlobalChat\inputs.xml";
@@ -28,6 +28,7 @@ class CfgMods
         dependencies[] =
         {
             "Game",
+            "World",
             "Mission"
         };
 
@@ -39,6 +40,15 @@ class CfgMods
                 files[] =
                 {
                     "ZellnoGlobalChat/scripts/3_Game"
+                };
+            };
+
+            class worldScriptModule
+            {
+                value = "";
+                files[] =
+                {
+                    "ZellnoGlobalChat/scripts/4_World"
                 };
             };
 

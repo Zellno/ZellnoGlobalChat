@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.2.0-alpha
+
+- Added optional Discord webhook forwarding.
+- Added separate webhook configuration for GLOBAL and VICINITY.
+- Added server-validated, client-reported VICINITY audit records with the `[ZGC] vicinity-audit` identifier.
+- Added an independent per-player rate limit for VICINITY audit requests.
+- Preserved the existing `[ZGC] accepted` identifier for GLOBAL messages.
+- Added configurable Discord webhook username.
+- Restricted webhook URLs to the official Discord webhook endpoint.
+- Disabled Discord allowed mentions in forwarded messages.
+- Added Discord-safe message sanitization without changing in-game or server-log content.
+- Added the World script module required by the Discord REST transport.
+- Validated separate GLOBAL and VICINITY Discord channels locally.
+- Removed temporary Discord payload and callback diagnostics.
+
 ## 0.1.0-alpha
 
 - Added server-wide player Global Chat.

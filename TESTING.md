@@ -55,3 +55,20 @@
 - [x] Cooldown for player A did not affect player B.
 - [x] Both player names were displayed correctly.
 - [x] Workshop client package matched the hosted server package.
+
+## Local Discord integration — 2026-10-08
+
+- [x] VICINITY produces one `[ZGC] vicinity-audit` server-log entry.
+- [x] GLOBAL retains one `[ZGC] accepted` server-log entry.
+- [x] VICINITY is forwarded only to its configured Discord webhook.
+- [x] GLOBAL is forwarded only to its configured Discord webhook.
+- [x] Empty webhook URLs leave Discord forwarding disabled.
+- [x] Webhook URLs remain outside the source and PBO.
+- [x] Discord allowed mentions are disabled.
+- [x] Double quotes are sanitized to apostrophes in Discord payloads.
+- [x] Backslashes are sanitized to forward slashes in Discord payloads.
+- [x] Accented text remains intact.
+- [x] Original in-game and server-log message content remains unchanged.
+- [x] Rapid VICINITY audit requests are rate-limited independently from GLOBAL.
+- [x] Temporary payload and callback diagnostics were removed.
+- [x] Final clean PBO compiled, signed and matched the local server copy.

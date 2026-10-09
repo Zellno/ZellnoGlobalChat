@@ -3,13 +3,26 @@ class ZGC_Settings
     bool Enabled = true;
     int MaxMessageLength = 256;
     int CooldownMilliseconds = 2000;
+    int VicinityAuditCooldownMilliseconds = 500;
     bool LogAcceptedMessages = true;
     bool LogRejectedMessages = true;
+    string DiscordGlobalWebhookUrl = "";
+    string DiscordVicinityWebhookUrl = "";
+    string DiscordWebhookUsername = "Zellno Global Chat";
 
     void Validate()
     {
         MaxMessageLength = Math.Clamp(MaxMessageLength, 32, 512);
         CooldownMilliseconds = Math.Clamp(CooldownMilliseconds, 250, 60000);
+        VicinityAuditCooldownMilliseconds = Math.Clamp(VicinityAuditCooldownMilliseconds, 250, 60000);
+        DiscordGlobalWebhookUrl = DiscordGlobalWebhookUrl.Trim();
+        DiscordVicinityWebhookUrl = DiscordVicinityWebhookUrl.Trim();
+        DiscordWebhookUsername = DiscordWebhookUsername.Trim();
+
+        if (DiscordWebhookUsername.Length() > 80)
+        {
+            DiscordWebhookUsername = DiscordWebhookUsername.Substring(0, 80);
+        }
     }
 }
 
@@ -57,7 +70,7 @@ class ZGC_SettingsManager
         s_Settings.Validate();
         Save();
 
-        Print(ZGC_Constants.LOG_PREFIX + " Settings loaded: enabled=" + s_Settings.Enabled.ToString() + " maxLength=" + s_Settings.MaxMessageLength.ToString() + " cooldownMs=" + s_Settings.CooldownMilliseconds.ToString());
+        Print(ZGC_Constants.LOG_PREFIX + " Settings loaded: enabled=" + s_Settings.Enabled.ToString() + " maxLength=" + s_Settings.MaxMessageLength.ToString() + " cooldownMs=" + s_Settings.CooldownMilliseconds.ToString() + " vicinityAuditCooldownMs=" + s_Settings.VicinityAuditCooldownMilliseconds.ToString());
     }
 
     protected static void Save()

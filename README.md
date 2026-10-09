@@ -4,7 +4,7 @@ Independent open source DayZ mod that adds server-wide Global Chat while preserv
 
 ## Status
 
-Version 0.1.0-alpha. Local and hosted two-player multiplayer validation is complete. Global Chat was validated between players positioned in the north and south of Chernarus.
+Version 0.2.0-alpha. Local and hosted two-player multiplayer validation is complete. Optional Discord webhook logging for GLOBAL and VICINITY has also been validated locally.
 
 ## Usage
 
@@ -18,10 +18,39 @@ Version 0.1.0-alpha. Local and hosted two-player multiplayer validation is compl
 
 The server validates identity, target, content length, control characters and per-player cooldown before broadcasting.
 
+GLOBAL and VICINITY Discord payloads disable allowed mentions. Webhook URLs are accepted only from the official Discord webhook endpoint. VICINITY audit requests have an independent server-side rate limit.
+
+## Logging and Discord
+
+GLOBAL messages retain the `[ZGC] accepted` server-log identifier.
+
+VICINITY remains vanilla gameplay chat, but the client reports a server-validated audit record using the `[ZGC] vicinity-audit` identifier. Identity, target and content are validated server-side; the record is still client-reported because vanilla VICINITY delivery uses the original DayZ chat flow.
+
+GLOBAL and VICINITY can optionally be forwarded to separate Discord webhook channels.
+
 ## Configuration
 
-Server file: $profile:ZellnoGlobalChat/settings.json
-Defaults: enabled, 256 characters, 2000 ms cooldown, accepted/rejected logging.
+Server file: `$profile:ZellnoGlobalChat/settings.json`
+
+Defaults:
+
+- Global Chat enabled.
+- Maximum server-side message length: 256 characters.
+- Per-player Global Chat cooldown: 2000 milliseconds.
+- Per-player VICINITY audit cooldown: 500 milliseconds.
+- Accepted and rejected request logging enabled.
+- Discord GLOBAL webhook disabled until a URL is configured.
+- Discord VICINITY webhook disabled until a URL is configured.
+- Discord webhook username: `Zellno Global Chat`.
+
+Discord settings:
+
+- `VicinityAuditCooldownMilliseconds`
+- `DiscordGlobalWebhookUrl`
+- `DiscordVicinityWebhookUrl`
+- `DiscordWebhookUsername`
+
+Webhook URLs remain in the server profile and are not embedded in the mod package.
 
 ## Compatibility
 

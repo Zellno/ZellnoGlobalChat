@@ -14,6 +14,8 @@ Vanilla Vicinity Chat remains available and unchanged.
 [*]Per-player Global Chat cooldown.
 [*]Server-side identity, target, length and content validation.
 [*]Accepted and rejected request logging.
+[*]Optional Discord webhook forwarding.
+[*]Separate Discord channels for GLOBAL and VICINITY logs.
 [*]Simple JSON server configuration.
 [/list]
 
@@ -40,9 +42,23 @@ Defaults:
 [list]
 [*]Global Chat enabled.
 [*]Maximum server-side message length: 256 characters.
-[*]Per-player cooldown: 2000 milliseconds.
+[*]Per-player Global Chat cooldown: 2000 milliseconds.
+[*]Per-player VICINITY audit cooldown: 500 milliseconds.
 [*]Accepted and rejected request logging enabled.
+[*]Discord forwarding disabled until webhook URLs are configured.
+[*]Discord webhook username: Zellno Global Chat.
 [/list]
+
+Optional Discord and audit settings:
+
+[code]VicinityAuditCooldownMilliseconds[/code]
+[code]DiscordGlobalWebhookUrl[/code]
+[code]DiscordVicinityWebhookUrl[/code]
+[code]DiscordWebhookUsername[/code]
+
+GLOBAL and VICINITY can use separate Discord webhook channels.
+Webhook URLs remain in the server profile and are not embedded in the mod.
+Discord allowed mentions are disabled.
 
 [h2]Compatibility[/h2]
 
@@ -56,12 +72,13 @@ Defaults:
 
 [h2]Current status[/h2]
 
-Version 0.1.0-alpha.
+Version 0.2.0-alpha.
 
 Local client-to-server-to-client Global Chat validation has passed.
 Vicinity, reconnect reset, input remapping, cooldown and logging tests have passed.
 Hosted two-player validation has passed between players positioned in the north and south of Chernarus.
 Bidirectional delivery, correct player names, independent cooldowns and one copy per recipient were confirmed.
+Separate GLOBAL and VICINITY Discord webhook channels have been validated locally.
 
 [h2]Source code[/h2]
 

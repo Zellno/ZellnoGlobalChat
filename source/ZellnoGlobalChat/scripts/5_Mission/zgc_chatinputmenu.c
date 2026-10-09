@@ -81,6 +81,7 @@ modded class ChatInputMenu
 
         if (ZGC_ClientState.IsVicinity())
         {
+            ZGC_SendVicinityAudit(text);
             return super.OnChange(w, x, y, finished);
         }
 
@@ -101,6 +102,24 @@ modded class ChatInputMenu
 
         m_ZGC_ChannelIndicator.SetText(ZGC_ClientState.GetLabel());
         m_ZGC_ChannelIndicator.Show(true);
+    }
+
+    protected void ZGC_SendVicinityAudit(string text)
+    {
+        if (!GetGame().IsMultiplayer())
+        {
+            return;
+        }
+
+        PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
+        if (!player)
+        {
+            return;
+        }
+
+        Param1<string> payload = new Param1<string>(text);
+
+        GetGame().RPCSingleParam(player, ZGC_Constants.RPC_AUDIT_VICINITY, payload, true);
     }
 
     protected void ZGC_SendGlobalMessage(string text)

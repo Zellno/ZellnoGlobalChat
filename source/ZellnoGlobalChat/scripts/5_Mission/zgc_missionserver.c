@@ -1,10 +1,12 @@
 modded class MissionServer
 {
     protected ref map<string, int> m_ZGC_LastAcceptedByIdentity;
+    protected ref map<string, int> m_ZGC_LastVicinityAuditByIdentity;
 
     void MissionServer()
     {
         m_ZGC_LastAcceptedByIdentity = new map<string, int>;
+        m_ZGC_LastVicinityAuditByIdentity = new map<string, int>;
 
         ZGC_SettingsManager.LoadOrCreate();
         GetDayZGame().Event_OnRPC.Insert(ZGC_OnRPC);
@@ -27,6 +29,12 @@ modded class MissionServer
         ParamsReadContext ctx
     )
     {
+        if (rpcType == ZGC_Constants.RPC_AUDIT_VICINITY)
+        {
+            ZGC_OnVicinityAudit(sender, target, ctx);
+            return;
+        }
+
         if (rpcType != ZGC_Constants.RPC_SEND_GLOBAL)
         {
             return;
@@ -122,6 +130,10 @@ modded class MissionServer
         {
             Print(ZGC_Constants.LOG_PREFIX + " accepted" + " id=" + senderId + " name=" + senderName + " message=" + message);
         }
+
+        string discordContent = "[GLOBAL] " + senderName + ": " + message;
+
+        ZGC_GetDiscordWebhook().Send(settings.DiscordGlobalWebhookUrl, settings.DiscordWebhookUsername, "GLOBAL", discordContent);
     }
 
     protected void ZGC_Broadcast(string senderName, string message)
@@ -147,6 +159,92 @@ modded class MissionServer
 
             GetGame().RPCSingleParam(player, ZGC_Constants.RPC_RECEIVE_GLOBAL, outgoing, true, recipient);
         }
+    }
+
+    protected void ZGC_OnVicinityAudit(
+        PlayerIdentity sender,
+        Object target,
+        ParamsReadContext ctx
+    )
+    {
+        if (!GetGame().IsServer() || !sender)
+        {
+            return;
+        }
+
+        ZGC_Settings settings = ZGC_SettingsManager.Get();
+        if (!settings || !settings.Enabled)
+        {
+            return;
+        }
+
+        PlayerBase targetPlayer = PlayerBase.Cast(target);
+        if (!targetPlayer)
+        {
+            return;
+        }
+
+        PlayerIdentity targetIdentity = targetPlayer.GetIdentity();
+        if (!targetIdentity)
+        {
+            return;
+        }
+
+        string senderId = sender.GetId();
+        if (senderId == "" || targetIdentity.GetId() != senderId)
+        {
+            return;
+        }
+
+        Param1<string> payload;
+        if (!ctx.Read(payload))
+        {
+            return;
+        }
+
+        string message = payload.param1;
+        message = message.Trim();
+
+        if (message == "")
+        {
+            return;
+        }
+
+        if (message.IndexOf("\r") != -1 || message.IndexOf("\n") != -1 || message.IndexOf("\t") != -1)
+        {
+            return;
+        }
+
+        if (message.Length() > settings.MaxMessageLength)
+        {
+            return;
+        }
+
+        int now = GetGame().GetTime();
+        int lastAudit;
+
+        if (m_ZGC_LastVicinityAuditByIdentity.Find(senderId, lastAudit))
+        {
+            int elapsed = now - lastAudit;
+
+            if (elapsed >= 0 && elapsed < settings.VicinityAuditCooldownMilliseconds)
+            {
+                return;
+            }
+        }
+
+        m_ZGC_LastVicinityAuditByIdentity.Set(senderId, now);
+
+        string senderName = sender.GetName();
+
+        if (settings.LogAcceptedMessages)
+        {
+            Print(ZGC_Constants.LOG_PREFIX + " vicinity-audit" + " id=" + senderId + " steamId=" + sender.GetPlainId() + " name=" + senderName + " position=" + targetPlayer.GetPosition().ToString() + " message=" + message);
+        }
+
+        string discordContent = "[VICINITY] " + senderName + ": " + message;
+
+        ZGC_GetDiscordWebhook().Send(settings.DiscordVicinityWebhookUrl, settings.DiscordWebhookUsername, "VICINITY", discordContent);
     }
 
     protected void ZGC_LogRejected(
