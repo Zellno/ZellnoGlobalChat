@@ -60,6 +60,29 @@ Messages beginning with ! or / remain available to ZenModCore and VPPAdminTools.
 
 Vanilla DayZ only. CF and Dabs Framework are not required.
 
+## Monetization Permission
+
+Zellno permits the use of Zellno Global Chat on monetized DayZ servers, provided that the server operator is registered, approved and listed under Bohemia Interactive's DayZ Server Monetization program and complies with all applicable rules.
+
+This permission applies only to the original content provided by Zellno in Zellno Global Chat. It does not grant permission to monetize DayZ itself or any third-party modification or content used alongside this mod.
+
+Server operators are responsible for obtaining any additional permissions required by the authors of other mods installed on their servers.
+
+- [Official monetization rules](https://www.bohemia.net/monetization)
+- [Approved DayZ servers](https://www.bohemia.net/monetization/approved/dayz)
+
+## Support the project
+
+Zellno mods are free and open source, but developing, testing and maintaining them takes time.
+
+If you enjoy my work and would like to support future development, you can [buy me a coffee](https://www.buymeacoffee.com/noobopensource).
+
+Thank you for your support!
+
+## Official Mod Support
+
+For questions, bug reports, compatibility feedback and mod support, join the [official Zellno Discord community](https://discord.gg/bhfBetKtqr).
+
 ## License
 
 MIT. See LICENSE.
